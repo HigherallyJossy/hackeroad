@@ -50,13 +50,14 @@
 						<div class="product-stock">In Stock</div>
 						<hr>
 						<div class="btn-group cart">
-							<form action="{{ route('paymentlist') }}" method="post">
-								@csrf
-								<input type="hidden" value="45" name="price">
+							{{-- <form action="{{ route('paymentlist') }}" method="post">
+								@csrf --}}
+								{{-- <input type="hidden" value="45" name="price">
 								<button type="submit" class="btn btn-success">
 									Add to cart
 								</button>
-							</form>
+							</form> --}}
+						<a href="{{ route('paymentlist',45) }}">Add</a>
 						</div>
 					</div>
 				</div>
