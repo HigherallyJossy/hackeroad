@@ -453,8 +453,8 @@
                         </div>
                         <br>
                         
-                        <form action="{!! URL::to('paypal') !!}" id="selectedform" method="post">
-                        @csrf
+                        {{-- <form action="{!! URL::to('paypal') !!}" id="selectedform" method="post">
+                        @csrf --}}
                             <input type="hidden" class="form-control" name="amount" value="{{ $total_price }}" >
                                                       
                             <input type="hidden" name="email" class="user_email" value="">
@@ -468,7 +468,7 @@
                                     <button type="button" name="pay" id="btn_pay" class="btn_pay btn_get_detail" disabled>Pay Now</button>
                                 </div>							
                             </div>
-                        </form> 
+                        {{-- </form>  --}}
                         <div class="stripe_area">                           
                             <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation form-horizontal" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                                 @csrf
