@@ -41,7 +41,7 @@
 		    			<div class="btn-group cart">
                             <form action="{{ route('paymentlist') }}" method="post">
                                 @csrf
-                                <input type="hidden" value="45" name="price">
+                                {{-- <input type="hidden" value="45" name="price"> --}}
                                 <button type="submit" class="btn btn-success">								
                                     Add to cart 
                                 </button>
@@ -88,13 +88,13 @@
 		    			<div class="product-stock">In Stock</div>
 		    			<hr>
 		    			<div class="btn-group cart">
-		    				{{-- <form action="{{ route('paymentlist') }}" method="post">
+		    				<form action="{{ route('paymentlist') }}" method="post">
                                 @csrf
                                 <input type="hidden" value="200" name="price">
                                 <button type="submit" class="btn btn-success">								
                                     Add to cart 
                                 </button>
-                            </form>		    			 --}}
+                            </form>		    			
 		    			</div>		    			
 		    		</div>
 		    	</div> 
@@ -137,13 +137,13 @@
 		    			<div class="product-stock">In Stock</div>
 		    			<hr>
 		    			<div class="btn-group cart">
-		    				{{-- <form action="{{ route('paymentlist') }}" method="post">
+		    				<form action="{{ route('paymentlist') }}" method="post">
                                 @csrf
                                 <input type="hidden" value="300" name="price">
                                 <button type="submit" class="btn btn-success">								
                                     Add to cart 
                                 </button>
-                            </form>		    			 --}}
+                            </form>		    			
 		    			</div>		    			
 		    		</div>
 		    	</div> 
