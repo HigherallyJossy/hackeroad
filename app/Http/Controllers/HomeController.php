@@ -71,6 +71,12 @@ class HomeController extends Controller
         return view('membership');
     }
 
+    public function test(Request $request)
+    {
+        dump("test");
+        die;
+    }
+
     public function paymentlist(Request $request)
     {   
         $this->alert();
