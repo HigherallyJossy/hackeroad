@@ -74,6 +74,7 @@ class HomeController extends Controller
     public function paymentlist(Request $request)
     {   
         // $this->alert();
+        dd($request->all());
         $total_price = $request->get('price');
         if(empty($total_price))
         {
