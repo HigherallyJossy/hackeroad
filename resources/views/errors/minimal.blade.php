@@ -9,18 +9,12 @@
     <meta name="description" content="AdnList is the largest classifieds website where you can post your ad and get response.">
     <title>@yield('title')</title>
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css">  
     
-    
-    <link href="{{ asset('assets/css/util.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
-    
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon-icon/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/imge/favicon-icon/favicon.png') }}">
 	
 	<script src="{{ asset('assets/js/jquery.min.js') }}"></script>	
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>   
-    <script src="{{ asset('assets/js/jquery.cookie.js') }}"></script> 
+    
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
    
@@ -109,7 +103,7 @@
         <nav class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="10">
             <div class="container">
                 <div class="navbar-header">
-					<div class="logo"> <a href="{{ url('/') }}"><img src="{{ asset('assets/images/products/logo.png') }}" style="height:60px;" alt="image" /></a> </div>
+					<div class="logo"> <a href="{{ url('/') }}"><img src="{{ asset('assets/imge/logo.jpg') }}" style="height:60px;" alt="image" /></a> </div>
                     <button id="menu_slide" data-target="#navigation" aria-expanded="false" data-toggle="collapse"
                         class="navbar-toggle collapsed" type="button">
                         <span class="sr-only">Toggle navigation</span>
