@@ -75,14 +75,14 @@ class HomeController extends Controller
     {   
         // $this->alert();
         die;
-        dd($request->all());
-        $total_price = $request->get('price');
-        if(empty($total_price))
-        {
-            return redirect('/');
-        }
+        // dd($request->all());
+        // $total_price = $request->get('price');
+        // if(empty($total_price))
+        // {
+        //     return redirect('/');
+        // }
        
-        return view('paymentlist',compact('total_price'));    
+        // return view('paymentlist',compact('total_price'));   
         
     }
 
