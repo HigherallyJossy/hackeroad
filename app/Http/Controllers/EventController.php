@@ -60,12 +60,15 @@ class EventController extends Controller
     {
 
         $transaction = PaytmWallet::with('receive'); 
-        $response = $transaction->response();        
+        $response = $transaction->response();
+        dump($response);
         if($transaction->isSuccessful())
         {
+        //   Event::where('order_id',$response['ORDERID'])->update(['status'=>'success', 'payment_id'=>$response['TXNID']]); 
             session()->flash('success', 'Your payment has been prosessed successfully!');
             return redirect(url('/'));
-        }else if($transaction->isFailed()){        
+        }else if($transaction->isFailed()){
+        //   Event::where('order_id',$order_id)->update(['status'=>'failed', 'payment_id'=>$response['TXNID']]);
             session()->flash('error', 'Payment Failed. Try again lator');
             return redirect(url('/'));
         }
