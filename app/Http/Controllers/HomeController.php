@@ -50,7 +50,7 @@ class HomeController extends Controller
     {       
         $this->alert();
         $user_ip = $_SERVER['REMOTE_ADDR'];
-        if($user_ip != "::1" && "127.0.0.1")
+        if($user_ip != "::1" && $user_ip != "127.0.0.1")
         {
             $details = json_decode(file_get_contents("http://ipinfo.io/{$user_ip}"));   
             dump($details);     
