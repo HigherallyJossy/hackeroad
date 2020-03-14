@@ -25,8 +25,8 @@ Route::post('/stripe_payment', 'StripePaymentController@stripe')->name('get_stri
 Route::any('/stripe', 'StripePaymentController@stripePost')->name('stripe.post');
 
 
-Route::post('/paypal', 'PaypalController@payWithpaypal');
-Route::get('/status', 'PaypalController@getPaymentStatus');
+Route::post('/paypal', 'PayPalController@payWithpaypal');
+Route::get('/status', 'PayPalController@getPaymentStatus');
 
 
 Route::post('/creditpayment', 'CreditController@creditpayment')->name('creditpayment');
