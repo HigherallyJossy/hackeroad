@@ -17,7 +17,6 @@ Route::any('/', 'HomeController@welcome')->name('welcome');
 Auth::routes(['verify' => true]);
 
 Route::any('/paymentlist', 'HomeController@paymentlist')->name('paymentlist');
-// Route::post('/test', 'HomeController@test')->name('test');
 Route::post('/login', 'HomeController@login')->name('user.login');
 Route::get('/membership', 'HomeController@membership')->name('membership');
 
@@ -32,7 +31,7 @@ Route::get('/status', 'PaypalController@getPaymentStatus');
 
 Route::post('/creditpayment', 'CreditController@creditpayment')->name('creditpayment');
 Route::post('/cashpayment', 'CashController@cashpayment')->name('cashpayment');
-Route::get('/test', 'CashController@test')->name('test');
+
 
 
 

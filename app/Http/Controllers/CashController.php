@@ -46,9 +46,5 @@ class CashController extends Controller
         return redirect(url('/'));
     }
 
-    public function test(Request $request)
-    {
-
-       dd("wewer");
-    }
+   
 }
