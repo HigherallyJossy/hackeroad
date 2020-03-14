@@ -241,8 +241,8 @@
 				<strong>Success!</strong> {{ session('success') }}
 			</div>
 			@endif
-			{{-- <form action="{{ route('user.login') }}">
-				@csrf --}}
+			<form action="{{ route('user.login') }}">
+				@csrf
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-envelope-o"style="font-size:30px"></i></span>
 					<input id="email" type="text" class="form-controls" name="email" placeholder="Email" style="border-left: none;">
@@ -251,8 +251,8 @@
 					<span class="input-group-addon"><i class="fa fa-lock"style="font-size:30px;padding: 0 5px;"></i></span>
 					<input id="password" type="password" class="form-controls" name="password" placeholder="Password"style="border-left: none;">
 				</div>
-				<a href="{{ route('membership') }}" class="btn btn-submit">SUBMIT</a>
-			{{-- </form> --}}
+				<button type="submit" class="btn btn-submit">SUBMIT</button>
+			</form>
 		</div>  
 		<div ><div class="price"><img src="./assets/imge/price.png"    width="30%"/></div></div>
 	</div>
