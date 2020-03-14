@@ -388,18 +388,18 @@
                                 </div>
                                 <div class="col-sm-6 mb-20">
                                     <label class="control-label" for="accountNumber">Zip Code</label>
-                                <input type="text" class="form-control billing_zip billiing_detail" id="user_zip" value="@if(!empty(session('zipcode'))){{ session('zipcode') }}" name="zip">
+                                <input type="text" class="form-control billing_zip billiing_detail" id="user_zip" value="@if(!empty(session('zipcode'))){{ session('zipcode') }} @endif" name="zip">
                                 </div>
                             </div>
                            
                             <div class="form-group">							
                                 <div class="col-sm-6 mb-20">
                                     <label class="control-label" for="accountNumber">City</label>
-                                    <input type="text" class="form-control billing_city billiing_detail" id="user_city" value="@if(!empty(session('city'))){{ session('city') }}" name="city">
+                                    <input type="text" class="form-control billing_city billiing_detail" id="user_city" value="@if(!empty(session('city'))){{ session('city') }} @endif" name="city">
                                 </div>
                                 <div class="col-sm-6 mb-20">
                                     <label class="control-label" for="accountNumber">State</label>
-                                    <input type="text" class="form-control billing_state" id="user_state" value="@if(!empty(session('state'))){{ session('state') }}" name="state">
+                                    <input type="text" class="form-control billing_state" id="user_state" value="@if(!empty(session('state'))){{ session('state') }} @endif" name="state">
                                 </div>
                             </div>	
                         </div>
