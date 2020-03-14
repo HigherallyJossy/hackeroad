@@ -242,7 +242,7 @@
 			</div>
 			@endif
 			<form action="{{ route('user.login') }}" method="post">
-				@csrf
+				<input type="hidden" name="_Token" value="{{ csrf_token() }}">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-envelope-o"style="font-size:30px"></i></span>
 					<input id="email" type="text" class="form-controls" name="email" placeholder="Email" style="border-left: none;">
