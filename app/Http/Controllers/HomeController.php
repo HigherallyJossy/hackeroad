@@ -77,12 +77,11 @@ class HomeController extends Controller
         die;
     }
 
-    public function paymentlist(Request $request,$price)
+    public function paymentlist(Request $request)
     {   
 
         $this->alert();
-        // $total_price = $request->get('price');
-        $total_price = $price;
+        $total_price = $request->get('price');       
         if(empty($total_price))
         {
             return redirect('/');
