@@ -422,15 +422,7 @@
                                             <input type="radio" class="approved" name="paymethod" value="paypal">
                                             <span class="checkround_user"></span>
                                         </label>
-                                    </li>
-                                    <li>
-                                        <label class="user_action btn-approved disabled_item">
-                                            <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Google Pay</span>
-                                            <img src="./assets/imge/googlepay.png" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset=""> 
-                                            <input type="radio" class="approved" disabled name="paymethod" value="googlepay">
-                                            <span class="checkround_user"></span>
-                                        </label>
-                                    </li>
+                                    </li>                                   
                                     <li>
                                         <label class="user_action btn-approved">
                                             <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Paytm</span>
