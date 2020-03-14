@@ -37,9 +37,7 @@ class EventController extends Controller
         $input['amount'] = $request->get('total_price');
  
         // Event::insert($input);
- dump($request->email);
- dump($request->mobile_number);
-
+ 
         $payment = PaytmWallet::with('receive');
         $payment->prepare([
           'order' => $input['order_id'],
@@ -49,7 +47,7 @@ class EventController extends Controller
           'amount' => $input['amount'],
           'callback_url' => url('/paytm_payment/status')
         ]);
-        dump($payment->receive());die;
+       
         return $payment->receive();
     }
  
@@ -60,7 +58,7 @@ class EventController extends Controller
      */
     public function paymentCallback()
     {
-
+        die;
         $transaction = PaytmWallet::with('receive'); 
         $response = $transaction->response();
         dump($response);
