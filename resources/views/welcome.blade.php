@@ -241,7 +241,7 @@
 				<strong>Success!</strong> {{ session('success') }}
 			</div>
 			@endif
-			<form action="{{ route('user.login') }}">
+			<form action="{{ route('user.login') }}" method="post">
 				@csrf
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-envelope-o"style="font-size:30px"></i></span>
