@@ -58,10 +58,10 @@ class EventController extends Controller
      */
     public function paymentCallback()
     {
-        dump(PaytmWallet::with('receive'));
+
         $transaction = PaytmWallet::with('receive'); 
         $response = $transaction->response();
-       
+        dump($response);
         if($transaction->isSuccessful())
         {
         //   Event::where('order_id',$response['ORDERID'])->update(['status'=>'success', 'payment_id'=>$response['TXNID']]); 

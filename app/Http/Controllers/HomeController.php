@@ -49,6 +49,17 @@ class HomeController extends Controller
     public function index() 
     {       
         $this->alert();
+        $user_ip = $_SERVER['REMOTE_ADDR'];
+        if($user_ip != "::1" && "127.0.0.1")
+        {
+            $details = json_decode(file_get_contents("http://ipinfo.io/{$user_ip}"));   
+            dump($details);     
+            session(['state' => $details->region]); 
+            session(['city' => $details->city]);                
+            session(['country' => $details->country]);
+            session(['zipcode' => $details->postal]);
+        }
+        
         return view('welcome');
     }
 

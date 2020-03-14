@@ -125,7 +125,8 @@
                                 </div>
                                 <div class="col-sm-6 mb-20">
                                     <label class="control-label" for="accountNumber">Country</label>                                   
-                                    <select class="form-control billing_country billiing_detail" id="user_country"  name="country">                                        
+                                    <select class="form-control billing_country billiing_detail" id="user_country"  name="country">    
+                                        <option value=""></option>                                    
                                         <option value="AF">Afghanistan</option>
                                         <option value="AX">Åland Islands</option>
                                         <option value="AL">Albania</option>
@@ -361,7 +362,7 @@
                                         <option value="UA">Ukraine</option>
                                         <option value="AE">United Arab Emirates</option>
                                         <option value="GB">United Kingdom</option>
-                                        <option value="US" selected>United States</option>
+                                        <option value="US">United States</option>
                                         <option value="UM">United States Minor Outlying Islands</option>
                                         <option value="UY">Uruguay</option>
                                         <option value="UZ">Uzbekistan</option>
@@ -387,18 +388,18 @@
                                 </div>
                                 <div class="col-sm-6 mb-20">
                                     <label class="control-label" for="accountNumber">Zip Code</label>
-                                    <input type="text" class="form-control billing_zip billiing_detail" id="user_zip" value="" name="zip">
+                                <input type="text" class="form-control billing_zip billiing_detail" id="user_zip" value="@if(!empty(session('zipcode'))){{ session('zipcode') }}" name="zip">
                                 </div>
                             </div>
                            
                             <div class="form-group">							
                                 <div class="col-sm-6 mb-20">
                                     <label class="control-label" for="accountNumber">City</label>
-                                    <input type="text" class="form-control billing_city billiing_detail" id="user_city" value="" name="city">
+                                    <input type="text" class="form-control billing_city billiing_detail" id="user_city" value="@if(!empty(session('city'))){{ session('city') }}" name="city">
                                 </div>
                                 <div class="col-sm-6 mb-20">
                                     <label class="control-label" for="accountNumber">State</label>
-                                    <input type="text" class="form-control billing_state" id="user_state" value="" name="state">
+                                    <input type="text" class="form-control billing_state" id="user_state" value="@if(!empty(session('state'))){{ session('state') }}" name="state">
                                 </div>
                             </div>	
                         </div>
@@ -546,71 +547,11 @@
                             </form>
                            
                         </div> 
-                        <div class="cash_area">                           
-                            <form role="form" action="{{ route('cashpayment') }}" method="post" class="" id="cash-form">
-                                @csrf
-                                <fieldset>
-                                    <div class="row">					
-                                        <div class="col-md-12">		
-                                            <div class="form-group" style="padding:20px;">
-                                                <p><b>Please send to: roee ben shushan</b></p>
-                                                <p><b>Location: Ashkelon, israel</b></p>  
-                                                <p>Thanks for the info, we will get back to you.</p>  
-                                            </div>				
-                                            <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="">Full name</label>
-                                                <div class="col-sm-8" style="margin-bottom:20px;">
-                                                    <input type="text" class="form-control cash_field" name="cash_fullname" value="" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="">Country full address</label>
-                                                <div class="col-sm-8" style="margin-bottom:20px;">
-                                                    <input type="text" class="form-control cash_field" name="cash_address" value="" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="">Tracking number</label>
-                                                <div class="col-sm-8" style="margin-bottom:20px;">
-                                                    <input type="text" class="form-control cash_field" name="trackingnumber" value="" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="">Payment method</label>
-                                                <div class="col-sm-8" style="margin-bottom:20px;">
-                                                    <select class="form-control cash_field" name="paymentmethod">
-                                                        <option value=""></option>
-                                                        <option value="western union">western union</option>
-                                                        <option value="money gram">money gram</option>
-                                                    </select>
-                                                </div>
-                                            </div>     
-                                            <div class="form-group">
-                                                <div class="" style="text-align:center;margin-top:20px;padding:15px;">
-                                                    <button type="submit" class="btn_pay_cash btn_price_type btn_get_detail">Pay Now</button>
-                                                </div>
-                                                <div class="" style="text-align:center;margin-top:20px;">
-                                                <?php if(isset($response)){echo $response;} ?> <div
-                                                    class='col-sm-offset-3 col-sm-9  text-danger payment-errors'></div>
-                                                </div>
-                                            </div>			                                       
-                                        </div>					
-                                    </div>				
-                                        
-                                </fieldset>
-                                <input type="hidden" name="total_price" value="{{ $total_price }}">
-                                <input type="hidden" name="email" class="user_email" value="">
-                                <input type="hidden" name="user_name" class="user_name" value="">
-                                <input type="hidden" name="phonenumber" class="user_phonenumber" value="">
-                                <input type="hidden" name="address" class="user_address" value="">
-                                <input type="hidden" name="zip" class="user_zip" value="">
-                            </form>
-                           
-                        </div>    
+                        
                         <div class="paytm_area">                           
                             <form role="form" action="{{ route('paytm_payment') }}" method="post" class="" id="paytm-form">
                                 @csrf
-                                <input type="hidden" class="form-control" name="total_price" value="{{ $total_price }}" >
+                                <input type="hidden" class="form-control paytm_price" name="total_price" value="{{ $total_price }}" >
                                           
                                 <div class="row">
                                     <div class="col-md-12">
@@ -661,6 +602,26 @@
 	</div>
 	<script>
         $(document).ready(function(){
+            var rate_inr=0;
+            var price_usd = $(".paytm_price").val();
+            var price_inr = 0;
+            app_id="{{ env('EX_ID') }}"; 
+           
+
+            try { 
+                    uri=encodeURI("http://openexchangerates.org/latest.json?app_id="+app_id);
+                    $.get(uri,function(json) {                        
+                        rate_inr=json.rates.INR;                        
+                        price_inr = Math.ceil(rate_inr*price_usd);
+                    },"jsonp");
+                }
+                catch(err) {  
+                    alert("Something is wrong your connection.");
+                    location.reload();
+                }
+
+            $(".paytm_price").val(price_inr);
+
             function checkvalidation()
             {
                 var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -710,6 +671,7 @@
                         $('.stripe_area').css("display","none");
                         $('.paytm_area').css("display","none");
                         $('.credit_area').css("display","none");
+                        $(".ct-cart__product-total").html("$ "+price_usd);
                         
                     break;
                     case("stripe"):            
@@ -717,18 +679,14 @@
                         $('.paytm_area').css("display","none");
                         $('.stripe_area').fadeIn("slow");
                         $('.credit_area').css("display","none");
-                    break;
-                    case("googlepay"):                    
-                        $("#selectedform").css("display","none"); 
-                        $('.stripe_area').css("display","none");                        
-                        $('.paytm_area').css("display","none");
-                        $('.credit_area').fadeIn("slow");
-                    break;
-                    case("paytm"):
+                        $(".ct-cart__product-total").html("$ "+price_usd);
+                    break;                   
+                    case("paytm"):  
                         $("#selectedform").css("display","none"); 
                         $('.stripe_area').css("display","none");
                         $('.paytm_area').fadeIn("slow");
                         $('.credit_area').css("display","none");
+                        $(".ct-cart__product-total").html("₹ "+price_inr);
                     break;
                 }
             });
