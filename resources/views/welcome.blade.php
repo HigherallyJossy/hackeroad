@@ -246,7 +246,7 @@
 								</div>
 								<div class="price">
 									<div class="sup">$</div>
-									<div class="monthly-amount">45</div>
+									<div class="monthly-amount">0.5</div>
 								</div>
 								<div class="per-month">a month</div>
 							</div>
