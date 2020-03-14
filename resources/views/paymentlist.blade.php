@@ -65,7 +65,7 @@
         }
     .has-error{border-color: #ee0000;}
     .paymethodlist{padding:0px;}
-    .cart_list{padding:20px 20px 35px 20px;border:1px solid #868686;margin-top:25px;}
+    .cart_list{padding:20px 20px 45px 20px;border:1px solid #868686;margin-top:25px;}
     .btn_pay, .btn_pay_stripe, .btn_pay_cash, .btn_pay_credit{
         width: 100%;
         background: #2ca205;
@@ -81,6 +81,7 @@
     }
     #selectedform, .cash_area, .credit_area{display:none;}
     .disabled_item{cursor: not-allowed;}
+    .ct-preloader-logo{border-bottom: 1px solid #dedede;padding: 10px;}
     @media(max-width:470px)
     {
         .user_action {padding: 6px 0px 6px 0px;height: auto;}
@@ -89,11 +90,11 @@
 </style>
 <body>
 	<div class="container">
-        <div class="ct-preloader" style="margin-top:20px;">
+        <div class="ct-preloader">
             <div class="ct-preloader-inner">
                 <div class="ct-preloader-logo">
-                <a href="{{ url('/') }}"> <img src="{{ asset('assets/images/products/logo.png') }}" alt=""
-                        style="width:230px;"></a>
+                <a href="{{ url('/') }}"> <img src="{{ asset('assets/imge/logo.png') }}" alt=""
+                        style="height:60px;"></a>
                                     
             </div>
         </div>
@@ -409,7 +410,7 @@
                                     <li>
                                         <label class="user_action btn-approved">
                                             <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Credit card</span>
-                                            <img src="./assets/images/stripe.png" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset="">
+                                            <img src="./assets/imge/stripe.png" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset="">
                                             <input type="radio" class="approved"  name="paymethod" checked value="stripe">
                                             <span class="checkround_user"></span>
                                         </label>
@@ -417,24 +418,24 @@
                                     <li>
                                         <label class="user_action btn-approved">
                                             <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Paypal</span>
-                                            <img src="./assets/images/paypal.jpg" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset=""> 
+                                            <img src="./assets/imge/paypal.jpg" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset=""> 
                                             <input type="radio" class="approved" name="paymethod" value="paypal">
                                             <span class="checkround_user"></span>
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="user_action btn-approved">
-                                            <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Cash</span>
-                                            <img src="./assets/images/westerngram.png" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset=""> 
-                                            <input type="radio" class="approved"  name="paymethod" value="cash">
+                                        <label class="user_action btn-approved disabled_item">
+                                            <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Google Pay</span>
+                                            <img src="./assets/imge/googlepay.png" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset=""> 
+                                            <input type="radio" class="approved" disabled name="paymethod" value="googlepay">
                                             <span class="checkround_user"></span>
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="user_action btn-approved">
-                                            <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Credit card</span>
-                                            <img src="./assets/images/credit.png" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset="">
-                                            <input type="radio" class="approved"  name="paymethod" value="credit">
+                                        <label class="user_action btn-approved disabled_item">
+                                            <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Paytm</span>
+                                            <img src="./assets/imge/paytm.jpg" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset="">
+                                            <input type="radio" class="approved" disabled name="paymethod" value="paytm">
                                             <span class="checkround_user"></span>
                                         </label>
                                     </li>
@@ -445,36 +446,16 @@
                             
 					</div>
 					<div class="col-md-6">						
-						<div class="cart_list">
-                            <p>
-                                <span>
-                                    <svg aria-hidden="true" style="height:20px;" focusable="false" data-prefix="fas" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-shopping-cart fa-w-18 fa-3x"><path fill="currentColor" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z" class=""></path></svg>
-                                </span>
-                                <span style="font-size:24px;">Cart summary</span>
-                            </p> 
-                           
-                                <div>
-                                    <div>
-                                       @for ($i = 0; $i < count($name); $i++)
-                                           <p class="ct-cart__product-body"><span class="ct-cart__product-name"> {{ $name[$i] }} </span>:&nbsp; &nbsp;<span class="ct-cart__product-price">{{ $price[$i] }}</span>&nbsp;&times;&nbsp;<span class="ct-cart__product-count">{{ $count[$i] }}</span></p>              
-                                       @endfor
-                                                                   
-                                    </div>                                   
-                                </div>
+						<div class="cart_list">                            
                             <div>
-                                <label for="" style="float:right;font-size:22px;">Total: <span class="ct-cart__product-total"> {{ $total_price }} </span> </label>
+                                <label for="" style="float:right;font-size:22px;">Total: <span class="ct-cart__product-total">$ {{ $total_price }} </span> </label>
                             </div>                            
                         </div>
                         <br>
-                        <div style="text-align:center;">
-                            <p style="font-size:16px;">
-                                <input type="checkbox" name="" id="agree_terms" checked>
-                                By clicking the button, you agree to the <a href="{{ route('terms') }}" target="_blank">Terms and Condition</a>
-                            </p>
-                        </div>
-                        <form action="{{ route('payment') }}" id="selectedform" method="post">
+                        
+                        <form action="{!! URL::to('paypal') !!}" id="selectedform" method="post">
                         @csrf
-                            <input type="hidden" class="form-control" name="total_price" value="{{ $total_price }}" >
+                            <input type="hidden" class="form-control" name="amount" value="{{ $total_price }}" >
                                                       
                             <input type="hidden" name="email" class="user_email" value="">
                             <input type="hidden" name="user_name" class="user_name" value="">
@@ -635,8 +616,8 @@
                            
                         </div>    
                         <div class="credit_area">                           
-                            {{-- <form role="form" action="{{ route('creditpayment') }}" method="post" class="" id="credit-form">
-                                @csrf --}}
+                            <form role="form" action="{{ route('creditpayment') }}" method="post" class="" id="credit-form">
+                                @csrf
                                 <input type="hidden" class="form-control" name="total_price" value="{{ $total_price }}" >
                                                       
                                 <input type="hidden" name="email" class="user_email" value="">
@@ -647,11 +628,11 @@
 
                                 <div class="form-group">
                                     <div class="" style="text-align:center;margin-top:20px;">
-                                        {{-- <button type="button" name="pay" class="btn_pay_credit btn_get_detail">Pay Now</button> --}}
-                                        <a target="_blank" style="display:block;text-decoration: none;" href="https://pay.tranzila.com/daniel1982" class="btn_pay_credit btn_get_detail">Pay Now</a>
+                                        <button type="button" name="pay" class="btn_pay_credit btn_get_detail">Pay Now</button>
+                                       
                                     </div>							
                                 </div>
-                            {{-- </form>                            --}}
+                            </form>                           
                         </div>   
                         
                         <div class="alert_billing">
@@ -696,44 +677,7 @@
                 }
                 return true;
             }
-           
-            $(".ct-cart__product-body").each(function(){
-                var name = $(this).find(".ct-cart__product-name").html();
-                var price = $(this).find(".ct-cart__product-price").html();
-                var count = $(this).find(".ct-cart__product-count").html();
-                
-                $("#payment-form").append(`
-                <input type="hidden" name="name[]" value="`+ name +`">
-                `);
-                $("#cash-form").append(`
-                <input type="hidden" name="name[]" value="`+ name +`">
-                `);
-                $("#selectedform").append(`
-                <input type="hidden" name="name[]" value="`+ name +`">
-                `);
-
-                $("#payment-form").append(`
-                <input type="hidden" name="price[]" value="`+ price +`">
-                `);
-                $("#cash-form").append(`
-                <input type="hidden" name="price[]" value="`+ price +`">
-                `);
-                $("#selectedform").append(`
-                <input type="hidden" name="amount[]" value="`+ price +`">
-                `);
-
-                $("#payment-form").append(`
-                <input type="hidden" name="count[]" value="`+ count +`">
-                `);
-                $("#cash-form").append(`
-                <input type="hidden" name="count[]" value="`+ count +`">
-                `);
-                $("#selectedform").append(`
-                <input type="hidden" name="quantity[]" value="`+ count +`">
-                `);
-                        
-            });
-            
+              
 
             $(".billiing_detail").bind("keyup change", function(e) {
                 $(".alert_billing").fadeOut('slow');
@@ -761,13 +705,13 @@
                         $('.stripe_area').fadeIn("slow");
                         $('.credit_area').css("display","none");
                     break;
-                    case("credit"):                    
+                    case("googlepay"):                    
                         $("#selectedform").css("display","none"); 
                         $('.stripe_area').css("display","none");                        
                         $('.cash_area').css("display","none");
                         $('.credit_area').fadeIn("slow");
                     break;
-                    case("cash"):
+                    case("paytm"):
                         $("#selectedform").css("display","none"); 
                         $('.stripe_area').css("display","none");
                         $('.cash_area').fadeIn("slow");

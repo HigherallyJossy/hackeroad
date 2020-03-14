@@ -61,27 +61,33 @@ class HomeController extends Controller
         return view('welcome');        
     }
 
+    public function login(Request $request)
+    {
+        return redirect(route("membership"));
+    }
+
+    public function membership(Request $request)
+    {
+        return view('membership');
+    }
+
+    public function test(Request $request)
+    {
+        dump("test");
+        die;
+    }
+
     public function paymentlist(Request $request)
-    {   
+    {           
         $this->alert();
-        $total_price = $request->get('total_price');
+        $total_price = $request->get('price');       
         if(empty($total_price))
         {
             return redirect('/');
         }
-        $name = array();
-        $price = array();
-        $count = array();
-        $name = $request->get('name');
-        $price = $request->get('price');
-        $count = $request->get('count');        
-        
-        return view('paymentlist',compact('total_price','name','price','count'));        
+       
+        return view('paymentlist',compact('total_price'));    
         
     }
-
-    public function terms(Request $request)
-    {
-        return view('terms');
-    }
+   
 }

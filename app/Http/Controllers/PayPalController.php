@@ -3,98 +3,166 @@
 namespace App\Http\Controllers;
   
 use Illuminate\Http\Request;
-use Srmklive\PayPal\Services\ExpressCheckout;
 
 use Auth;
-use Session;
-use Stripe;
 use App\User;
 use App\Mail\FeedbackMail;
 use App\Mail\Receipts;
 
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Input;
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+
+/** All Paypal Details class **/
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Rest\ApiContext;
+use Redirect;
 use Exception;
+use Session;
+use URL;
+
 class PayPalController extends Controller
 {
+    private $_api_context;
     /**
-     * Responds with a welcome message with instructions
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function payment(Request $request)
-    {   
-        
-        $total_price = $request->get('total_price');
-        $total_price = str_replace("$","",$total_price);  
-        $total_price = (float)$total_price;     
-        
-        $data = [];
-        $data['items'] = [
-            [
-                'name' => 'facemask99.com',
-                'price' => $total_price,
-                'desc'  => 'Description for facemask99.com',
-                'qty' => 1
-            ]
-        ];
-  
-        $data['invoice_id'] = 1;
-        $data['invoice_description'] = "Order #{$data['invoice_id']} Invoice";
-        $data['return_url'] = route('payment.success');
-        $data['cancel_url'] = route('payment.cancel');
-        $data['total'] = $total_price;
-  
-        $provider = new ExpressCheckout;
-  
-        $response = $provider->setExpressCheckout($data);
-  
-        $response = $provider->setExpressCheckout($data, true);
-        
-        $feedback = array();
-        $feedback["username"] = $request->get('user_name');      
-        $feedback["email"] = $request->get('email');      
-        $feedback["zip"] = $request->get('zip');      
-        $feedback["address"] = $request->get('address');      
-        $feedback["phone"] = $request->get('phonenumber');      
-        $feedback["name"] =  $request->get('name'); 
-        $feedback["price"] =  $request->get('price'); 
-        $feedback["count"] =  $request->get('count'); 
-        $feedback["totalprice"] = $request->total_price;
-        $feedback['paytype'] = "Paypal";
-        $toEmail = env('ADMIN_MAIL');
-        
-        // Mail::to($toEmail)->send(new FeedbackMail($feedback));
-        // Mail::to($request->get('email'))->send(new FeedbackMail($feedback));
-        
+    public function __construct()
+    {
 
-        return redirect($response['paypal_link']);
+        /** PayPal api context **/
+        $paypal_conf = \Config::get('paypal');
+        $this->_api_context = new ApiContext(new OAuthTokenCredential(
+            $paypal_conf['client_id'],
+            $paypal_conf['secret'])
+        );
+        $this->_api_context->setConfig($paypal_conf['settings']);
+
     }
-   
-    /**
-     * Responds with a welcome message with instructions
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function cancel()
-    {        
-        session()->flash('pay_result', 'Your payment is canceled. Please try again.');        
-        return redirect(url('/'));
+    public function index()
+    {
+        return view('paywithpaypal');
     }
-  
-    /**
-     * Responds with a welcome message with instructions
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function success(Request $request)
-    {       
-        //$response = $provider->getExpressCheckoutDetails($request->token);
-        //dd($response);
-        if (!empty($request->PayerID)) {            
-            session()->flash('pay_result', 'Your payment has been prosessed successfully!');        
-            return redirect(url('/'));
+    public function payWithpaypal(Request $request)
+    {
+
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+
+        $item_1 = new Item();
+
+        $item_1->setName('Item 1') /** item name **/
+            ->setCurrency('USD')
+            ->setQuantity(1)
+            ->setPrice($request->get('amount')); /** unit price **/
+
+        $item_list = new ItemList();
+        $item_list->setItems(array($item_1));
+
+        $amount = new Amount();
+        $amount->setCurrency('USD')
+            ->setTotal($request->get('amount'));
+
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setItemList($item_list)
+            ->setDescription('Your transaction description');
+
+        $redirect_urls = new RedirectUrls();
+        $redirect_urls->setReturnUrl(URL::to('status'))
+            ->setCancelUrl(URL::to('status'));
+
+        $payment = new Payment();
+        $payment->setIntent('Sale')
+            ->setPayer($payer)
+            ->setRedirectUrls($redirect_urls)
+            ->setTransactions(array($transaction));        
+        try {
+
+            $payment->create($this->_api_context);
+
+        } catch (\PayPal\Exception\PPConnectionException $ex) {
+
+            if (\Config::get('app.debug')) {
+
+                \Session::put('error', 'Connection timeout');
+                return Redirect::to('/');
+
+            } else {
+
+                \Session::put('error', 'Some error occur, sorry for inconvenient');
+                return Redirect::to('/');
+
+            }
+
         }
-        session()->flash('pay_result', 'Something is wrong.');        
-        return redirect(url('/'));        
+
+        foreach ($payment->getLinks() as $link) {
+
+            if ($link->getRel() == 'approval_url') {
+
+                $redirect_url = $link->getHref();
+                break;
+
+            }
+
+        }
+
+        /** add payment ID to session **/
+        Session::put('paypal_payment_id', $payment->getId());
+
+        if (isset($redirect_url)) {
+
+            /** redirect to paypal **/
+            return Redirect::away($redirect_url);
+
+        }
+        
+        session()->flash('error', 'Unknown error occurred');
+        return Redirect::to('/');
+
+    }
+
+    public function getPaymentStatus()
+    {
+        /** Get the payment ID before session clear **/
+        $payment_id = Session::get('paypal_payment_id');
+
+        /** clear the session payment ID **/
+        Session::forget('paypal_payment_id');
+        if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
+
+            session()->flash('error', 'Payment failed');
+            return Redirect::to('/');
+
+        }
+
+        $payment = Payment::get($payment_id, $this->_api_context);
+        $execution = new PaymentExecution();
+        $execution->setPayerId(Input::get('PayerID'));
+
+        /**Execute the payment **/
+        $result = $payment->execute($execution, $this->_api_context);
+
+        if ($result->getState() == 'approved') {
+
+            session()->flash('success', 'Your payment has been prosessed successfully!');
+            return Redirect::to('/');
+
+        }
+        
+        session()->flash('error', 'Payment failed');
+        return Redirect::to('/');
+
     }
 }
