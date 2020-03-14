@@ -25,8 +25,8 @@
 </head>
 
 <body>
-<form action="{{ route('test') }}" method="post">
-	@csrf
+<form action="{{ route('test') }}" method="get">
+	
 	<button type="submit">test</button>
 </form>
 	
