@@ -240,6 +240,11 @@
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				<strong>Success!</strong> {{ session('success') }}
 			</div>
+			@else
+			<div class="alert alert-success alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Error!</strong> {{ session('error') }}
+			</div>
 			@endif
 			<form action="{{ route('user.login') }}" method="post">
 			@csrf

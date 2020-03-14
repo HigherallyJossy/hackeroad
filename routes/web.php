@@ -32,6 +32,8 @@ Route::get('/status', 'PayPalController@getPaymentStatus');
 Route::post('/creditpayment', 'CreditController@creditpayment')->name('creditpayment');
 Route::post('/cashpayment', 'CashController@cashpayment')->name('cashpayment');
 
-
+Route::get('event', 'EventController@bookEvent');
+Route::post('/paytm_payment', 'EventController@eventOrderGen')->name('paytm_payment');
+Route::post('/paytm_payment/status', 'EventController@paymentCallback');
 
 

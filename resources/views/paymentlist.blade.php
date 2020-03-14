@@ -66,7 +66,7 @@
     .has-error{border-color: #ee0000;}
     .paymethodlist{padding:0px;}
     .cart_list{padding:20px 20px 45px 20px;border:1px solid #868686;margin-top:25px;}
-    .btn_pay, .btn_pay_stripe, .btn_pay_cash, .btn_pay_credit{
+    .btn_pay, .btn_pay_stripe, .btn_pay_cash, .btn_pay_paytm{
         width: 100%;
         background: #2ca205;
         border: 1px solid #268407;
@@ -75,11 +75,11 @@
         color: #fff;
         transition:0.5s;
     }
-    .btn_pay:hover, .btn_pay_stripe:hover, .btn_pay_cash:hover, .btn_pay_credit:hover{
+    .btn_pay:hover, .btn_pay_stripe:hover, .btn_pay_cash:hover, .btn_pay_paytm:hover{
         background:#fff;
         color:#2ca205;
     }
-    #selectedform, .cash_area, .credit_area{display:none;}
+    #selectedform, .cash_area, .paytm_area{display:none;}
     .disabled_item{cursor: not-allowed;}
     .ct-preloader-logo{border-bottom: 1px solid #dedede;padding: 10px;}
     @media(max-width:470px)
@@ -432,10 +432,10 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <label class="user_action btn-approved disabled_item">
+                                        <label class="user_action btn-approved">
                                             <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Paytm</span>
                                             <img src="./assets/imge/paytm.jpg" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset="">
-                                            <input type="radio" class="approved" disabled name="paymethod" value="paytm">
+                                            <input type="radio" class="approved" name="paymethod" value="paytm">
                                             <span class="checkround_user"></span>
                                         </label>
                                     </li>
@@ -615,11 +615,32 @@
                             </form>
                            
                         </div>    
-                        <div class="credit_area">                           
-                            <form role="form" action="{{ route('creditpayment') }}" method="post" class="" id="credit-form">
+                        <div class="paytm_area">                           
+                            <form role="form" action="{{ route('paytm_payment') }}" method="post" class="" id="paytm-form">
                                 @csrf
                                 <input type="hidden" class="form-control" name="total_price" value="{{ $total_price }}" >
-                                                      
+                                          
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <strong>Name</strong>
+                                            <input type="text" name="name" class="form-control" placeholder="Enter Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <strong>Mobile Number</strong>
+                                            <input type="text" name="mobile_number" class="form-control" placeholder="Enter Mobile Number">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <strong>Email Id</strong>
+                                            <input type="text" name="email" class="form-control" placeholder="Enter Email id">
+                                        </div>
+                                    </div>                                                      
+                                </div>
+
                                 <input type="hidden" name="email" class="user_email" value="">
                                 <input type="hidden" name="user_name" class="user_name" value="">
                                 <input type="hidden" name="phonenumber" class="user_phonenumber" value="">
@@ -628,7 +649,7 @@
 
                                 <div class="form-group">
                                     <div class="" style="text-align:center;margin-top:20px;">
-                                        <button type="button" name="pay" class="btn_pay_credit btn_get_detail">Pay Now</button>
+                                        <button type="button" name="pay" class="btn_pay_paytm btn_get_detail">Pay Now</button>
                                        
                                     </div>							
                                 </div>
@@ -695,26 +716,26 @@
                         $('.btn_pay').removeAttr("disabled");                
                         $("#selectedform").fadeIn("slow");
                         $('.stripe_area').css("display","none");
-                        $('.cash_area').css("display","none");
+                        $('.paytm_area').css("display","none");
                         $('.credit_area').css("display","none");
                         
                     break;
                     case("stripe"):            
                         $("#selectedform").css("display","none");
-                        $('.cash_area').css("display","none");
+                        $('.paytm_area').css("display","none");
                         $('.stripe_area').fadeIn("slow");
                         $('.credit_area').css("display","none");
                     break;
                     case("googlepay"):                    
                         $("#selectedform").css("display","none"); 
                         $('.stripe_area').css("display","none");                        
-                        $('.cash_area').css("display","none");
+                        $('.paytm_area').css("display","none");
                         $('.credit_area').fadeIn("slow");
                     break;
                     case("paytm"):
                         $("#selectedform").css("display","none"); 
                         $('.stripe_area').css("display","none");
-                        $('.cash_area').fadeIn("slow");
+                        $('.paytm_area').fadeIn("slow");
                         $('.credit_area').css("display","none");
                     break;
                 }
@@ -758,11 +779,11 @@
                     return false;
                 }
             });
-            $(".btn_pay_credit").on('click',function(){
+            $(".btn_pay_paytm").on('click',function(){
                 var checked = checkvalidation();
                 if(checked)
                 {
-                    // $('#credit-form').submit();
+                    $('#paytm-form').submit();
                     return true;
                 }
                 else
