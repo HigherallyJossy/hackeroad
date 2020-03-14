@@ -14,6 +14,8 @@
 	
 </head>
 <style>
+    body{background: #000000;color:#dedede;}
+    .form-control{background:transparent;}
     .mb-20{margin-bottom:10px;}
     .paymethodlist li{list-style-type:none;}
     .user_action {
@@ -76,7 +78,7 @@
         transition:0.5s;
     }
     .btn_pay:hover, .btn_pay_stripe:hover, .btn_pay_cash:hover, .btn_pay_paytm:hover{
-        background:#fff;
+        background:transparent;
         color:#2ca205;
     }
     #selectedform, .cash_area, .paytm_area{display:none;}
@@ -168,7 +170,7 @@
                                     <li>
                                         <label class="user_action btn-approved">
                                             <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Paypal</span>
-                                            <img src="./assets/imge/paypal.jpg" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset=""> 
+                                            <img src="./assets/imge/paypal.png" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset=""> 
                                             <input type="radio" class="approved" name="paymethod" value="paypal">
                                             <span class="checkround_user"></span>
                                         </label>
@@ -176,7 +178,7 @@
                                     <li>
                                         <label class="user_action btn-approved">
                                             <span class="" style="font-size: 20px;line-height: 40px;margin-left:35px;font-family:arial;">Paytm</span>
-                                            <img src="./assets/imge/paytm.jpg" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset="">
+                                            <img src="./assets/imge/paytm.png" style="float:right;height: 43px;margin-right: 10px;" alt="" srcset="">
                                             <input type="radio" class="approved" name="paymethod" value="paytm">
                                             <span class="checkround_user"></span>
                                         </label>
@@ -216,13 +218,8 @@
                                 @csrf
                                 <fieldset>
                                     <div class="row">					
-                                        <div class="col-md-12">						
-                                            <div class="form-group">
-                                                <label class="col-sm-4 control-label" for="accountNumber">Payment Amount</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" name="price" value="{{ $total_price }}" disabled>
-                                                </div>
-                                            </div>
+                                        <div class="col-md-12">					
+                                            
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label" for="accountNumber">Card Number</label>
                                                 <div class="col-sm-8">
