@@ -90,9 +90,5 @@ class HomeController extends Controller
         // return view('paymentlist',compact('total_price'));    
         
     }
-
-    public function terms(Request $request)
-    {
-        return view('terms');
-    }
+   
 }
