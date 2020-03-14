@@ -217,21 +217,8 @@
 			
 				
 			<div class="text-center">
-				<h2>Choose your HuanjingVPN plan</h2>
-				<p><strong>All plans</strong> are covered by a no-hassle<strong> 100% money-back guarantee</strong> for your first 30 days of service.</p>
-				<span class="section-title-line"></span>
-				<div class="tg-list-item d-flex justify-content-center">
-					<div class="d-flex">
-						<div id="monthly" class="my-auto text-muted">Monthly</div>
-						<div class="pt-2 pl-3 pr-3">
-							<label class="switch">
-								<input type="checkbox" checked="" id="plantype" name="plantype">
-								<div class="slider"></div>
-							</label>
-						</div>
-						<div id="annually" class="my-auto text-primary">Annually</div>
-					</div>
-				</div>
+				<h2>Choose your Hackeroad plan</h2>
+				<br>
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
@@ -295,56 +282,7 @@
 						</button>
 					</form>
 				</div>
-			</div>
-			<div class="row mt-5">
-				<div class="col-sm-12">
-					<h5 class="step-heading">
-						Enter your email address:
-					</h5>
-					<p>
-						Privacy guarantee: We do not share your information and will contact you only as needed to provide our service.
-					</p>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<div class="form-email">
-							<input placeholder="Your email address" required="" minlength="10" maxlength="60" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" autocomplete="off" class="form-control input-lg error" size="30" name="email" id="email" aria-required="true" aria-invalid="true">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="plan_normal" class="accordion">
-						<div class="accordion_title">Bitcoin
-							<div class="paymethod" style="background: none;">
-								<img src="http://huanjingvpn.com/img/bitcoin.png" style="width: 45px; height: 55px;">
-							</div>
-						</div>
-						<div class="accordion_panel active">
-							<div>Continue below to buy a VPN subscription with Bitcoin.</div>
-							<h5 class="pay_pricing">Order Total: <span class="text-success" id="billing">$32.00</span> <del id="oldbilling"></del></h5>
-							<div>If you have a coupon, You can save 20%.</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<div class="form-email">
-										<input placeholder="(Optional)" minlength="10" maxlength="10" pattern="^[a-zA-Z0-9\-_]+$" autocomplete="off" class="form-control input-lg error" id="coupon" name="coupon">
-									</div>
-								</div>
-							</div>
-							<div class="pay_btn_div" style="margin: 20px 0;">
-								<button class="p-3 btn btn-outline-primary">Continue to Bitcoin</button>
-							</div>
-						</div>
-					</div>
-					<div id="plan_free" class="accordion" style="display:none">
-						<button class="m-3 p-3 btn btn-outline-primary">Continue as free plan</button>
-					</div>
-				</div>
-			</div>
+			</div>	
 			
 		</div>
 	</section>
