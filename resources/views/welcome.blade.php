@@ -237,7 +237,7 @@
 				<div class="col-sm-4">
 					<form action="{{ route('paymentlist') }}" method="post">
 						@csrf
-						<input type="hidden" value="45" name="price">							
+						<input type="hidden" value="0.5" name="price">							
 						<button type="submit" class="pricing_item" data="0">
 							<h4 class="pt-4"><b>A month</b></h4>
 							<div class="plan-amount">
