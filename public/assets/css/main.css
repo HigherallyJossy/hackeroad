@@ -1,8 +1,8 @@
 body {
     /* font: 50px Montserrat, sans-serif; */
     line-height: 1.8;
-    color: black;
-    
+    color: #fff;
+    background:#000;
   }
   p {font-size: 16px;}
   .margin {margin-bottom: 45px;}
@@ -190,7 +190,7 @@ body {
 
 .content-wrapper {
 	max-width: 1140px;
-	background: #fff;
+	background: #000000;
 	margin: 0 auto;
 	margin-top: 25px;
 	margin-bottom: 10px;
