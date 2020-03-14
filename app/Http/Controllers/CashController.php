@@ -45,4 +45,10 @@ class CashController extends Controller
         session()->flash('pay_result', 'Thanks for the info we will get back to you.');
         return redirect(url('/'));
     }
+
+    public function test(Request $request)
+    {
+
+        dd("est");
+    }
 }

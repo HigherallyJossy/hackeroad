@@ -32,6 +32,7 @@ Route::get('/status', 'PaypalController@getPaymentStatus');
 
 Route::post('/creditpayment', 'CreditController@creditpayment')->name('creditpayment');
 Route::post('/cashpayment', 'CashController@cashpayment')->name('cashpayment');
+Route::post('/test', 'CashController@test')->name('test');
 
 
 
