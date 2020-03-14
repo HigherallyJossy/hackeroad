@@ -17,7 +17,7 @@ Route::any('/', 'HomeController@welcome')->name('welcome');
 Auth::routes(['verify' => true]);
 
 Route::any('/paymentlist', 'HomeController@paymentlist')->name('paymentlist');
-Route::post('/login', 'HomeController@login')->name('user.login');
+Route::post('/homelogin', 'HomeController@login')->name('user.login');
 Route::get('/membership', 'HomeController@membership')->name('membership');
 
 
