@@ -49,6 +49,6 @@ class CashController extends Controller
     public function test(Request $request)
     {
 
-        dd("est");
+        exit('567890-');
     }
 }
