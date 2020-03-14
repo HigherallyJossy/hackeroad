@@ -46,29 +46,31 @@ class HomeController extends Controller
                 
     }
 
-    public function index() 
-    {       
-        $this->alert();
+    public function getlocation()
+    {
         $user_ip = $_SERVER['REMOTE_ADDR'];
         if($user_ip != "::1" && $user_ip != "127.0.0.1")
         {
-            $details = json_decode(file_get_contents("http://ipinfo.io/{$user_ip}"));   
-            dump($details);     
+            $details = json_decode(file_get_contents("http://ipinfo.io/{$user_ip}")); 
             session(['state' => $details->region]); 
             session(['city' => $details->city]);                
             session(['country' => $details->country]);
             session(['zipcode' => $details->postal]);
         }
+    }
+
+    public function index() 
+    {       
+        $this->alert();
+        $this->getlocation();
         
         return view('welcome');
     }
-
     
-   
-
     public function welcome(Request $request)
     {    
         $this->alert();
+        $this->getlocation();
         return view('welcome');        
     }
 
