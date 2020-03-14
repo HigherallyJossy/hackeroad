@@ -50,7 +50,7 @@
 						<div class="product-stock">In Stock</div>
 						<hr>
 						<div class="btn-group cart">
-							<form action="{{ route('paymentlist') }}" method="post">
+							<form action="{{ route('paymentlist') }}">
 								@csrf
 								<input type="hidden" value="45" name="price">
 								<button type="submit" class="btn btn-success">
