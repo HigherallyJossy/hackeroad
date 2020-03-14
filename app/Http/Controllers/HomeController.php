@@ -79,15 +79,15 @@ class HomeController extends Controller
 
     public function paymentlist(Request $request)
     {   
-
-        $this->alert();
-        $total_price = $request->get('price');       
-        if(empty($total_price))
-        {
-            return redirect('/');
-        }
+        die;
+        // $this->alert();
+        // $total_price = $request->get('price');       
+        // if(empty($total_price))
+        // {
+        //     return redirect('/');
+        // }
        
-        return view('paymentlist',compact('total_price'));    
+        // return view('paymentlist',compact('total_price'));    
         
     }
 
