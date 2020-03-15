@@ -4,12 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Models\Poster;
-use App\Models\Contact;
-use App\User;
-use Illuminate\Support\Facades\Mail;
-
-use App\Mail\AdminSend;
 
 class Kernel extends ConsoleKernel
 {
@@ -30,28 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {            
-            $temp = date('Y-m-d');          
-            $all_poster = Poster::where('status','1')->whereDate('expire_date',$temp)->get();
-            foreach ($all_poster as $item)
-            {
-                $user_id = $item->user_id;
-                $item->status = '5';
-                $item->save();
-                if(User::find($user_id))
-                {
-                    $comment = array();        
-                    $comment["name"] = User::find($user_id)->name;                
-                    $comment["task_status"] = "5";
-                    $comment["adminmail"] = Contact::find(1)->support;
-                    
-                    $toEmail = User::find($user_id)->email;
-                
-                    Mail::to($toEmail)->send(new AdminSend($comment));
-                }
-                    
-            }               
-        });
+        // $schedule->command('inspire')
+        //          ->hourly();
     }
 
     /**

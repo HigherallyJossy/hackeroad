@@ -1,15 +1,8 @@
 <?php
-  
+
 namespace App\Http\Controllers;
-  
+
 use Illuminate\Http\Request;
-
-use Auth;
-use App\User;
-use App\Mail\FeedbackMail;
-use App\Mail\Receipts;
-
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;

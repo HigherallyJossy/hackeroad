@@ -4,19 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
-use Auth;
-use Hash;
-use App\User;
-use DB;
-use App\Mail\FeedbackMail;
-
-use App;
-
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
-
 class HomeController extends Controller
 {
     /**

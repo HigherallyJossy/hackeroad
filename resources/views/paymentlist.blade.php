@@ -294,7 +294,18 @@
                            
                         </div> 
                         
-                        <div class="paytm_area">                           
+                        <div class="paytm_area"> 
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <strong>Whoops!</strong> Something went wrong<br>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif    
+                                                  
                             <form role="form" action="{{ route('paytm_payment') }}" method="post" class="" id="paytm-form">
                                 @csrf
                                 <input type="hidden" class="form-control paytm_price" name="total_price" value="{{ $total_price }}" >

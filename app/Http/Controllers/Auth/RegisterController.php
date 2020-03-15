@@ -7,10 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Str;
-use App\Mail\SendCode;
-
-use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -32,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/email/verify';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -52,21 +48,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        
-        $temp = User::where('email',$data['email'])->first();
-        if(!empty($temp))
-        {
-            if($temp->status == '2')
-            {
-                session(['error_email' => 'support@adnlist.com']);
-            }
-        }
-        
-        return Validator::make($data, [           
-            'fname' => ['required', 'max:255'],
-            'lname' => ['required', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -76,26 +61,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data1)
-    {        
-        $lnametemp = str_replace(' ','',$data1['lname']);
-        $fnametemp = str_replace(' ','',$data1['fname']);
-        $lname = preg_replace('/[0-9]+/', '', $lnametemp);
-        $fname = preg_replace('/[0-9]+/', '', $fnametemp);
-        
+    protected function create(array $data)
+    {
         return User::create([
-            'fname' => $fname,
-            'lname' => $lname,
-            'name' => $fname." ".$lname,
-            'email' => $data1['email'],
-            'role'  => "0",            
-            'receive_b_s'  => "0",            
-            'verifytext'   => "",
-            'phone_code'   => "",
-            'status'       => "1",
-            'email_verified_at' => date('Y-m-d H:i:s', time()),
-            
-            'password' => Hash::make($data1['password']),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
     }
 }

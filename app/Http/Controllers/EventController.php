@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Event;
-use PaytmWallet;
 
+use App\Event;
+use PaytmWallet;
+ 
+ 
 class EventController extends Controller
 {
+ 
+ 
     /**
      * Redirect the user to the Payment Gateway.
      *
@@ -15,7 +19,7 @@ class EventController extends Controller
      */
     public function bookEvent()
     {
-        return view('book_event');
+        return view('event');
     }
  
  
@@ -25,16 +29,15 @@ class EventController extends Controller
      * @return Response
      */
     public function eventOrderGen(Request $request)
-    {        
-        // $this->validate($request, [
-        //   'name' => 'required',
-        //   'mobile_number' =>'required|numeric|digits:10|unique:events,mobile_number',
-        // ]);
-        
-
+    {
+    //  $this->validate($request, [
+    //       'name' => 'required',
+    //       'mobile_no' =>'required|numeric|digits:10|unique:events,mobile_number',
+    //     ]);
+ 
         $input = $request->all();
         $input['order_id'] = rand(1111,9999);
-        $input['amount'] = $request->get('total_price');
+        $input['amount'] = 1;
  
         // Event::insert($input);
  
@@ -45,9 +48,8 @@ class EventController extends Controller
           'mobile_number' => $request->mobile_number,
           'email' => $request->email,
           'amount' => $input['amount'],
-          'callback_url' => url('/paytm_payment/status')
+          'callback_url' => url('payment/status')
         ]);
-       
         return $payment->receive();
     }
  
@@ -58,19 +60,18 @@ class EventController extends Controller
      */
     public function paymentCallback()
     {
-        die;
-        $transaction = PaytmWallet::with('receive'); 
+        $transaction = PaytmWallet::with('receive');
+ 
         $response = $transaction->response();
-        dump($response);
-        if($transaction->isSuccessful())
-        {
-        //   Event::where('order_id',$response['ORDERID'])->update(['status'=>'success', 'payment_id'=>$response['TXNID']]); 
-            session()->flash('success', 'Your payment has been prosessed successfully!');
-            return redirect(url('/'));
+ 
+        if($transaction->isSuccessful()){
+        //   Event::where('order_id',$response['ORDERID'])->update(['status'=>'success', 'payment_id'=>$response['TXNID']]);
+ 
+          dd('Payment Successfully Credited.');
+ 
         }else if($transaction->isFailed()){
         //   Event::where('order_id',$order_id)->update(['status'=>'failed', 'payment_id'=>$response['TXNID']]);
-            session()->flash('error', 'Payment Failed. Try again lator');
-            return redirect(url('/'));
+          dd('Payment Failed. Try again lator');
         }
     }
 }

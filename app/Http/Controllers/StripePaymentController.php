@@ -3,14 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use Session;
 use Stripe;
-use App\User;
-use App\Mail\FeedbackMail;
-use App\Mail\Receipts;
-
-use Illuminate\Support\Facades\Mail;
 use Exception;
 
 class StripePaymentController extends Controller
