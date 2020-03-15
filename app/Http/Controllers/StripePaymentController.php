@@ -43,7 +43,7 @@ class StripePaymentController extends Controller
         catch(Exception $e) {           
             return back()->with("error",$e->getMessage()); 
         }
-        dd($temp);
+        
         if($temp->status == "succeeded")
         {           
             session()->flash('success', 'Your payment has been prosessed successfully!');
