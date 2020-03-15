@@ -101,20 +101,21 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="features-item text-center">
-						<h5 class="mb-4">Access any content</h5>
-						<p></p>
+						<h5 class="mb-4">Modifications and Termination of Service</h5>
+						<p>Hackeroad app shall not be liable (either expressly or impliedly) to you or to any third party in damages, compensation, costs or otherwise under any written law, common law or legal theory for the change in the prices listed.</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="features-item text-center">
-						<h5 class="mb-4">Security and Anonymity</h5>
-						<p>We are passionate about your privacy and security.</p>
-						<p>Use powerful encryption to avoid being hacked or tracked.</p>
+						<h5 class="mb-4">General Power-Leveling Terms of Service</h5>
+						<p>Should there be any unsatisfactory issues, you are welcomed to talk to us and Hackeroad app will work our best to fix it to your satisfaction. All issues should be addressed to us within a 24 hours time frame from the date and time of delivery else all delivered orders will be deem as accepted with complete satisfaction.</p>
+						
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="features-item text-center">
 						<h5 class="mb-4">24/7 support</h5>
+						<p>You are welcomed to leave positive or negative remarks as Hackeroad app always strive to provide the best service to our customers. Your Satisfaction is Our Motivation.</p>
 						<p>Get help in seconds instead of days.</p>
 						<p>Ask us a question by email and chat!</p>
 					</div>
