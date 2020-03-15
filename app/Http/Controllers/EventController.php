@@ -64,14 +64,14 @@ class EventController extends Controller
  
         $response = $transaction->response();
  
-        if($transaction->isSuccessful()){
-        //   Event::where('order_id',$response['ORDERID'])->update(['status'=>'success', 'payment_id'=>$response['TXNID']]);
- 
-          dd('Payment Successfully Credited.');
+        if($transaction->isSuccessful()){        
+            session()->flash('success', 'Your payment has been prosessed successfully!');
+          return redirect(url('/'));
  
         }else if($transaction->isFailed()){
-        //   Event::where('order_id',$order_id)->update(['status'=>'failed', 'payment_id'=>$response['TXNID']]);
-          dd('Payment Failed. Try again lator');
+       
+          session()->flash('error', 'Payment failed,try again later.');
+        return Redirect::to('/');
         }
     }
 }
