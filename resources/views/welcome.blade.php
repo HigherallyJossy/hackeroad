@@ -31,14 +31,14 @@
 		</div>
 		<nav class="navbar osahan-navbar navbar-expand-lg navbar-dark" id="mainNav">
 			<div class="container">
-				<a class="navbar-brand js-scroll-trigger" href="#page-top">
+				<a class="navbar-brand js-scroll-trigger" href="/">
 				<img src="{{ asset('assets/imge/logo.jpg') }}" style="height:60px;" lt="">
 				</a>
 				
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
-							<a class="nav-link js-scroll-trigger" href="#page-top">Home</a>
+							<a class="nav-link js-scroll-trigger" href="/">Home</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link js-scroll-trigger active" href="#service">Our Service</a>
