@@ -64,6 +64,7 @@ class StripePaymentController extends Controller
             $feedback['address'] = $this->_address;
             $feedback['phone'] = $this->_phone;
             $feedback['mail'] = $this->_useremail;
+            $feedback['type'] = "Stripe";
             $feedback['role'] = "user";
             $feedback['unit'] = "$";
             $toEmail = $this->_useremail;

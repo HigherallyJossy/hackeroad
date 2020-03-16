@@ -61,35 +61,42 @@
                 <tr>
                     <td style="padding-left:20px;">
                         <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
-                            Name: {{ $feedback['name'] }}
+                            Name: @if(!empty($feedback['name'])){{ $feedback['name'] }} @endif
                         </p>
                     </td>
                 </tr>  
                 <tr>
                     <td style="padding-left:20px;">
                         <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
-                            Address: {{ $feedback['address'] }}
+                            Address: @if(!empty($feedback['address'])){{ $feedback['address'] }} @endif
                         </p>
                     </td>
                 </tr>  
                 <tr>
                     <td style="padding-left:20px;">
                         <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
-                            Phone number: {{ $feedback['phone'] }}
+                            Phone number: @if(!empty($feedback['phone'])){{ $feedback['phone'] }} @endif
                         </p>
                     </td>
                 </tr>  
                 <tr>
                     <td style="padding-left:20px;">
                         <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
-                            Amount: {{ $feedback['unit'] }} {{ $feedback['amount'] }}
+                            Amount: @if(!empty($feedback['amount'])){{ $feedback['unit'] }} {{ $feedback['amount'] }} @endif
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td style="padding-left:20px;">
                         <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
-                            Mail: {{ $feedback['mail'] }}
+                            Mail: @if(!empty($feedback['mail'])){{ $feedback['mail'] }} @endif
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left:20px;">
+                        <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
+                            Payment method: @if(!empty($feedback['type'])){{ $feedback['type'] }} @endif
                         </p>
                     </td>
                 </tr>

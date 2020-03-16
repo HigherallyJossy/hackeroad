@@ -81,6 +81,7 @@ class EventController extends Controller
           $feedback['address'] = $this->_address;
           $feedback['phone'] = $this->_phone;
           $feedback['mail'] = $this->_useremail;
+          $feedback['type'] = "Paytm";
           $feedback['role'] = "user";
           $feedback['unit'] = "₹";
           $toEmail = $this->_useremail;
