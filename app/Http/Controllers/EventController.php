@@ -92,7 +92,7 @@ class EventController extends Controller
         }else if($transaction->isFailed()){
        
           session()->flash('error', 'Payment failed,try again later.');
-        return Redirect::to('/');
+          return redirect(url('/'));
         }
     }
 }
