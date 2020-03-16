@@ -48,6 +48,15 @@
                         
                     </td>
                 </tr> 
+                @else
+                <tr>
+                    <td style="padding:0px 20px 0px 20px;">
+                        <p style="margin:5px 0px 5px 0px;font-size:18px;color:#222;font-family: Montserrat;font-weight:600;">
+                            Hi, admin!
+                        </p>
+                       
+                    </td>
+                </tr>                  
                 @endif
                 <tr>
                     <td style="padding-left:20px;">
@@ -74,6 +83,13 @@
                     <td style="padding-left:20px;">
                         <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
                             Amount: {{ $feedback['unit'] }} {{ $feedback['amount'] }}
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left:20px;">
+                        <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
+                            Mail: {{ $feedback['mail'] }}
                         </p>
                     </td>
                 </tr>
