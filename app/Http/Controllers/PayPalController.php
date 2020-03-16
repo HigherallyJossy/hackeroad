@@ -168,6 +168,7 @@ class PayPalController extends Controller
             $feedback['address'] = $this->_address;
             $feedback['phone'] = $this->_phone;
             $feedback['role'] = "user";
+            $feedback['unit'] = "$";
             $toEmail = $this->_useremail;
             Mail::to($toEmail)->send(new FeedbackMail($feedback));
 
