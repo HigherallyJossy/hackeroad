@@ -71,7 +71,8 @@ class EventController extends Controller
  
         $response = $transaction->response();
  
-        if($transaction->isSuccessful()){ 
+        if($transaction->isSuccessful())
+        { 
           $feedback = array();
           $feedback['amount'] = $this->_amount;
           $feedback['name'] = $this->_name;
