@@ -59,7 +59,8 @@ class EventController extends Controller
         'callback_url' => url('payment/status')
       ]);
       
-      
+      dump($this->_useremail);
+      dd($this->_paytmemail);
       return $payment->receive();
     }
  
