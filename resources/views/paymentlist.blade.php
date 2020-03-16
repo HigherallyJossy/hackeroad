@@ -201,7 +201,7 @@
                         @csrf
                             <input type="hidden" class="form-control" name="amount" value="{{ $total_price }}" >
                                                       
-                            <input type="hidden" name="email" class="user_email" value="">
+                            <input type="hidden" name="user_email" class="user_email" value="">
                             <input type="hidden" name="user_name" class="user_name" value="">
                             <input type="hidden" name="phonenumber" class="user_phonenumber" value="">
                             <input type="hidden" name="address" class="user_address" value="">
@@ -285,7 +285,7 @@
                                         
                                 </fieldset>
                                 <input type="hidden" name="total_price" value="{{ $total_price }}">
-                                <input type="hidden" name="email" class="user_email" value="">
+                                <input type="hidden" name="user_email" class="user_email" value="">
                                 <input type="hidden" name="user_name" class="user_name" value="">
                                 <input type="hidden" name="phonenumber" class="user_phonenumber" value="">
                                 <input type="hidden" name="address" class="user_address" value="">

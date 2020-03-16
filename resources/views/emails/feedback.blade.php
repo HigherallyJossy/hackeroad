@@ -49,8 +49,20 @@
                     </td>
                 </tr> 
                 @endif
-              
-              
+                <tr>
+                    <td style="padding-left:20px;">
+                        <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
+                            Name: {{ $feedback['name'] }}
+                        </p>
+                    </td>
+                </tr>  
+                <tr>
+                    <td style="padding-left:20px;">
+                        <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
+                            Address: {{ $feedback['address'] }}
+                        </p>
+                    </td>
+                </tr>  
                 <tr>
                     <td style="padding-left:20px;">
                         <p style="margin:5px 0px 5px 0px;font-size:20px;color:#222;font-family: Montserrat;font-weight:600;">
