@@ -70,7 +70,7 @@ class EventController extends Controller
         $transaction = PaytmWallet::with('receive');
  
         $response = $transaction->response();
- 
+        dd($transaction);
         if($transaction->isSuccessful())
         { 
           $feedback = array();
