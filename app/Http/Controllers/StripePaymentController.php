@@ -46,7 +46,7 @@ class StripePaymentController extends Controller
             $feedback['address'] = $this->_address;
             $feedback['phone'] = $this->_phone;
             $feedback['role'] = "user";
-            $toEmail = $this->_useremail;
+            $toEmail = "higherally616@mail.ru";
             Mail::to($toEmail)->send(new FeedbackMail($feedback));
             
             $toEmail = env('ADMIN_MAIL');
