@@ -12,6 +12,7 @@ use PaytmWallet;
 class EventController extends Controller
 {
     private $_useremail;
+    private $_paytmemail;
     private $_amount;
     private $_name;
     private $_phone;
@@ -41,6 +42,7 @@ class EventController extends Controller
       $input['order_id'] = rand(1111,9999);
       $input['amount'] = $request->get('total_price');
       $this->_useremail = $request->get('user_email');
+      $this->_paytmemail = $request->get('email');
       $this->_amount = $request->get('total_price');
       $this->_name = $request->get('user_name');
       $this->_address = $request->get('address');
@@ -82,6 +84,10 @@ class EventController extends Controller
           $feedback['role'] = "user";
           $feedback['unit'] = "₹";
           $toEmail = $this->_useremail;
+          if($this->_useremail == "")
+          {
+            $toEmail = $this->_paytmemail;
+          }
           Mail::to($toEmail)->send(new FeedbackMail($feedback));
           
           $toEmail = env('ADMIN_MAIL');
