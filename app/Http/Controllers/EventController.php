@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FeedbackMail;
 use Illuminate\Http\Request;
 
 use App\Event;
@@ -12,6 +13,10 @@ class EventController extends Controller
 {
     private $_useremail;
     private $_amount;
+    private $_name;
+    private $_phone;
+    private $_address;
+
  
     /**
      * Redirect the user to the Payment Gateway.
@@ -48,6 +53,9 @@ class EventController extends Controller
       ]);
       $this->_useremail = $request->get('user_email');
       $this->_amount = $request->get('total_price');
+      $this->_name = $request->get('user_name');
+      $this->_address = $request->get('address');
+      $this->_phone = $request->get('phonenumber');
       
       return $payment->receive();
     }
@@ -63,8 +71,21 @@ class EventController extends Controller
  
         $response = $transaction->response();
  
-        if($transaction->isSuccessful()){        
-            session()->flash('success', 'Your payment has been prosessed successfully!');
+        if($transaction->isSuccessful()){ 
+          $feedback = array();
+          $feedback['amount'] = $this->_amount;
+          $feedback['name'] = $this->_name;
+          $feedback['address'] = $this->_address;
+          $feedback['phone'] = $this->_phone;
+          $feedback['role'] = "user";
+          $toEmail = $this->_useremail;
+          Mail::to($toEmail)->send(new FeedbackMail($feedback));
+          
+          $toEmail = env('ADMIN_MAIL');
+          $feedback['role'] = "admin";
+          Mail::to($toEmail)->send(new FeedbackMail($feedback));
+
+          session()->flash('success', 'Your payment has been prosessed successfully!');
           return redirect(url('/'));
  
         }else if($transaction->isFailed()){

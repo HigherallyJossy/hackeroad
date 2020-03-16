@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\FeedbackMail;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
@@ -25,6 +26,12 @@ use URL;
 class PayPalController extends Controller
 {
     private $_api_context;
+
+    private $_useremail;
+    private $_amount;
+    private $_name;
+    private $_phone;
+    private $_address;
     /**
      * Create a new controller instance.
      *
@@ -48,6 +55,12 @@ class PayPalController extends Controller
     }
     public function payWithpaypal(Request $request)
     {
+
+        $this->_useremail = $request->get('user_email');
+        $this->_amount = $request->get('total_price');
+        $this->_name = $request->get('user_name');
+        $this->_address = $request->get('address');
+        $this->_phone = $request->get('phonenumber');
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
@@ -148,6 +161,18 @@ class PayPalController extends Controller
         $result = $payment->execute($execution, $this->_api_context);
 
         if ($result->getState() == 'approved') {
+            $feedback = array();
+            $feedback['amount'] = $this->_amount;
+            $feedback['name'] = $this->_name;
+            $feedback['address'] = $this->_address;
+            $feedback['phone'] = $this->_phone;
+            $feedback['role'] = "user";
+            $toEmail = $this->_useremail;
+            Mail::to($toEmail)->send(new FeedbackMail($feedback));
+            
+            $toEmail = env('ADMIN_MAIL');
+            $feedback['role'] = "admin";
+            Mail::to($toEmail)->send(new FeedbackMail($feedback));
 
             session()->flash('success', 'Your payment has been prosessed successfully!');
             return Redirect::to('/');
