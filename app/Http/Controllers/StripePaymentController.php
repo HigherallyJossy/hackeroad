@@ -40,6 +40,19 @@ class StripePaymentController extends Controller
         $this->_address = $request->get('address');
         $this->_phone = $request->get('phonenumber');    
 
+        $feedback = array();
+            $feedback['amount'] = $this->_amount;
+            $feedback['name'] = $this->_name;
+            $feedback['address'] = $this->_address;
+            $feedback['phone'] = $this->_phone;
+            $feedback['role'] = "user";
+            $toEmail = $this->_useremail;
+            Mail::to($toEmail)->send(new FeedbackMail($feedback));
+            
+            $toEmail = env('ADMIN_MAIL');
+            $feedback['role'] = "admin";
+            Mail::to($toEmail)->send(new FeedbackMail($feedback));
+
         $price = $request->total_price;
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET')); 
        
