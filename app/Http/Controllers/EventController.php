@@ -39,7 +39,11 @@ class EventController extends Controller
       $input = $request->all();
       $input['order_id'] = rand(1111,9999);
       $input['amount'] = $request->get('total_price');
-
+      $this->_useremail = $request->get('user_email');
+      $this->_amount = $request->get('total_price');
+      $this->_name = $request->get('user_name');
+      $this->_address = $request->get('address');
+      $this->_phone = $request->get('phonenumber');
       // Event::insert($input);
 
       $payment = PaytmWallet::with('receive');
@@ -51,11 +55,7 @@ class EventController extends Controller
         'amount' => $input['amount'],
         'callback_url' => url('payment/status')
       ]);
-      $this->_useremail = $request->get('user_email');
-      $this->_amount = $request->get('total_price');
-      $this->_name = $request->get('user_name');
-      $this->_address = $request->get('address');
-      $this->_phone = $request->get('phonenumber');
+      
       
       return $payment->receive();
     }
