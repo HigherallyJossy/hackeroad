@@ -37,7 +37,7 @@ class EventController extends Controller
      */
     public function eventOrderGen(Request $request)
     {
-      dd($request->all());
+      
       $input = $request->all();
       $input['order_id'] = rand(1111,9999);
       $input['amount'] = $request->get('total_price');
