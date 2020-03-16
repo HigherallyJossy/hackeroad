@@ -76,11 +76,8 @@ class EventController extends Controller
           $feedback['type'] = "Paytm";
           $feedback['role'] = "user";
           $feedback['unit'] = "₹";
-          $toEmail = $this->_useremail;
-          if($this->_useremail == "")
-          {
-            $toEmail = $this->_paytmemail;
-          }
+          $toEmail = session('email');
+         
           Mail::to($toEmail)->send(new FeedbackMail($feedback));
           
           $toEmail = env('ADMIN_MAIL');
