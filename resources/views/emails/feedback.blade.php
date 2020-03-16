@@ -18,7 +18,7 @@
                 
                 <tr>
                     <td style="padding-left:20px;" align="center">
-                        <a href="{{ route('welcome') }}">
+                        <a href="">
                             <img src="https://testing.adnlist.com/assets/imge/emaillogo.png" alt="">
                         </a>
                     </td>
