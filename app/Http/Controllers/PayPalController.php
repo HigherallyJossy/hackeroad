@@ -177,12 +177,12 @@ class PayPalController extends Controller
             Mail::to($toEmail)->send(new FeedbackMail($feedback));
 
             session()->flash('success', 'Your payment has been prosessed successfully!');
-            return Redirect::to('/');
+            return redirect(url('/'));
 
         }
         
         session()->flash('error', 'Payment failed');
-        return Redirect::to('/');
+        return redirect(url('/'));
 
     }
 }
