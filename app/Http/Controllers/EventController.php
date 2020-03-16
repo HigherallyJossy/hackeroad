@@ -11,14 +11,7 @@ use PaytmWallet;
  
 class EventController extends Controller
 {
-    private $_useremail;
-    private $_paytmemail;
-    private $_amount;
-    private $_name;
-    private $_phone;
-    private $_address;
-
- 
+     
     /**
      * Redirect the user to the Payment Gateway.
      *
@@ -37,16 +30,15 @@ class EventController extends Controller
      */
     public function eventOrderGen(Request $request)
     {
-      
+      session(['email' => $request->get('user_email')]);
+      session(['amount' => $request->get('total_price')]);
+      session(['name' => $request->get('user_name')]);
+      session(['address' => $request->get('address')]);
+      session(['phone' => $request->get('phonenumber')]);
+
       $input = $request->all();
       $input['order_id'] = rand(1111,9999);
       $input['amount'] = $request->get('total_price');
-      $this->_useremail = $request->get('user_email');
-      $this->_paytmemail = $request->get('email');
-      $this->_amount = $request->get('total_price');
-      $this->_name = $request->get('user_name');
-      $this->_address = $request->get('address');
-      $this->_phone = $request->get('phonenumber');
       // Event::insert($input);
 
       $payment = PaytmWallet::with('receive');
@@ -76,11 +68,11 @@ class EventController extends Controller
         if($transaction->isSuccessful())
         { 
           $feedback = array();
-          $feedback['amount'] = $this->_amount;
-          $feedback['name'] = $this->_name;
-          $feedback['address'] = $this->_address;
-          $feedback['phone'] = $this->_phone;
-          $feedback['mail'] = $this->_useremail;
+          $feedback['amount'] = session('amount');
+          $feedback['name'] = session('name');
+          $feedback['address'] = session('address');
+          $feedback['phone'] = session('phone');
+          $feedback['mail'] = session('email');
           $feedback['type'] = "Paytm";
           $feedback['role'] = "user";
           $feedback['unit'] = "₹";
@@ -96,11 +88,23 @@ class EventController extends Controller
           Mail::to($toEmail)->send(new FeedbackMail($feedback));
 
           session()->flash('success', 'Your payment has been prosessed successfully!');
+
+          session(['email' => ""]);
+          session(['amount' => ""]);
+          session(['name' => ""]);
+          session(['address' => ""]);
+          session(['phone' => ""]);
           return redirect(url('/'));
  
         }else if($transaction->isFailed()){
        
           session()->flash('error', 'Payment failed,try again later.');
+
+          session(['email' => ""]);
+          session(['amount' => ""]);
+          session(['name' => ""]);
+          session(['address' => ""]);
+          session(['phone' => ""]);
           return redirect(url('/'));
         }
     }

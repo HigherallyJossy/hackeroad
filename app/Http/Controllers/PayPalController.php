@@ -27,12 +27,7 @@ use URL;
 class PayPalController extends Controller
 {
     private $_api_context;
-
-    private $_useremail;
-    private $_amount;
-    private $_name;
-    private $_phone;
-    private $_address;
+  
     /**
      * Create a new controller instance.
      *
@@ -57,11 +52,11 @@ class PayPalController extends Controller
     public function payWithpaypal(Request $request)
     {
 
-        $this->_useremail = $request->get('user_email');
-        $this->_amount = $request->get('total_price');
-        $this->_name = $request->get('user_name');
-        $this->_address = $request->get('address');
-        $this->_phone = $request->get('phonenumber');
+        session(['email' => $request->get('user_email')]);
+        session(['amount' => $request->get('total_price')]);
+        session(['name' => $request->get('user_name')]);
+        session(['address' => $request->get('address')]);
+        session(['phone' => $request->get('phonenumber')]);
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
@@ -163,15 +158,15 @@ class PayPalController extends Controller
 
         if ($result->getState() == 'approved') {
             $feedback = array();
-            $feedback['amount'] = $this->_amount;
-            $feedback['name'] = $this->_name;
-            $feedback['address'] = $this->_address;
-            $feedback['phone'] = $this->_phone;
-            $feedback['mail'] = $this->_useremail;
+            $feedback['amount'] = session('amount');
+            $feedback['name'] = session('name');
+            $feedback['address'] = session('address');
+            $feedback['phone'] = session('phone');
+            $feedback['mail'] = session('email');
             $feedback['type'] = "Paypal";
             $feedback['role'] = "user";
             $feedback['unit'] = "$";
-            $toEmail = $this->_useremail;
+            $toEmail = session('email');
             Mail::to($toEmail)->send(new FeedbackMail($feedback));
 
             $toEmail = env('ADMIN_MAIL');
@@ -179,10 +174,20 @@ class PayPalController extends Controller
             Mail::to($toEmail)->send(new FeedbackMail($feedback));
 
             session()->flash('success', 'Your payment has been prosessed successfully!');
+
+            session(['email' => ""]);
+            session(['amount' => ""]);
+            session(['name' => ""]);
+            session(['address' => ""]);
+            session(['phone' => ""]);
             return redirect(url('/'));
 
         }
-        
+        session(['email' => ""]);
+        session(['amount' => ""]);
+        session(['name' => ""]);
+        session(['address' => ""]);
+        session(['phone' => ""]);
         session()->flash('error', 'Payment failed');
         return redirect(url('/'));
 

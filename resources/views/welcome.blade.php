@@ -5,17 +5,17 @@
 <head>
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="keywords" content="hackeroad">
+	<meta name="keywords" content="hackerode">
 	<meta name="author" content="Artemova">
-	<meta content='hackeroad' name='description'>
+	<meta content='hackerode' name='description'>
 	
-	<meta content='hackeroad' name='twitter:card'>
-	<meta content='hackeroad' name='twitter:site'>
-	<meta content='hackeroad' property='og:title'>
-	<meta content='hackeroad' property='og:description'>	
+	<meta content='hackerode' name='twitter:card'>
+	<meta content='hackerode' name='twitter:site'>
+	<meta content='hackerode' property='og:title'>
+	<meta content='hackerode' property='og:description'>	
 	<meta content='' property='og:url'>
 
-	<title>Hackeroad</title>
+	<title>Hackerode</title>
 	
 	<link href="{{ asset('assets/css/bootstrap4.min.css') }}" rel="stylesheet">		
 	<link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
@@ -77,11 +77,11 @@
 				</div>
 				
 				<div class="col-md-12 text-center">
-					<h1 class="text-white">Hackeroad</h1>
+					<h1 class="text-white">Hackerode</h1>
 					
 					<p class="lead mb-5 text-white"></p>
 					
-					<p class="mb-0"><a href="#download" class="btn btn-outline-light">Get Hackeroad</a></p>
+					<p class="mb-0"><a href="#download" class="btn btn-outline-light">Get hackerode</a></p>
 					<h2 class="text-white mt-5"><strong>Enjoy unrestricted access worldwide</strong></h2>
 					
 				</div>
@@ -103,20 +103,20 @@
 				<div class="col-md-4">
 					<div class="features-item text-center">
 						<h5 class="mb-4">Modifications and Termination of Service</h5>
-						<p>Hackeroad app shall not be liable (either expressly or impliedly) to you or to any third party in damages, compensation, costs or otherwise under any written law, common law or legal theory for the change in the prices listed.</p>
+						<p>Hackerode app shall not be liable (either expressly or impliedly) to you or to any third party in damages, compensation, costs or otherwise under any written law, common law or legal theory for the change in the prices listed.</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="features-item text-center">
 						<h5 class="mb-4">General Power-Leveling Terms of Service</h5>
-						<p>Should there be any unsatisfactory issues, you are welcomed to talk to us and Hackeroad app will work our best to fix it to your satisfaction. All issues should be addressed to us within a 24 hours time frame from the date and time of delivery else all delivered orders will be deem as accepted with complete satisfaction.</p>
+						<p>Should there be any unsatisfactory issues, you are welcomed to talk to us and hackerode app will work our best to fix it to your satisfaction. All issues should be addressed to us within a 24 hours time frame from the date and time of delivery else all delivered orders will be deem as accepted with complete satisfaction.</p>
 						
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="features-item text-center">
 						<h5 class="mb-4">24/7 support</h5>
-						<p>You are welcomed to leave positive or negative remarks as Hackeroad app always strive to provide the best service to our customers. Your Satisfaction is Our Motivation.</p>
+						<p>You are welcomed to leave positive or negative remarks as hackerode app always strive to provide the best service to our customers. Your Satisfaction is Our Motivation.</p>
 						<p>Get help in seconds instead of days.</p>
 						<p>Ask us a question by email and chat!</p>
 					</div>
@@ -158,7 +158,7 @@
 			
 				
 			<div class="text-center">
-				<h2>Choose your Hackeroad plan</h2>
+				<h2>Choose your hackerode plan</h2>
 				<br>
 			</div>
 			<div class="row">
@@ -196,12 +196,12 @@
 	</section>
 	<section class="bg-primary" id="support">
 		<div class="section-title text-center">
-			<h2 class="text-white">How to contact Hackeroad Support</h2>
+			<h2 class="text-white">How to contact hackerode Support</h2>
 		</div>
 		<div class="row" style="text-align: center">
 
 			<div class="col-12 text-white">
-					<i class="fa fa-envelope"></i> Send an email: <a class="text-warning" href="mailto: support@huanjingvpn.com">support@hackeroad.com</a>
+					<i class="fa fa-envelope"></i> Send an email: <a class="text-warning" href="mailto: support@huanjingvpn.com">support@hackerode.com</a>
 			</div>
 		</div>
 	</section>

@@ -32,13 +32,9 @@ class StripePaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function stripePost(Request $request)
     {
-        $this->_useremail = $request->get('user_email');
-        $this->_amount = $request->get('total_price');
-        $this->_name = $request->get('user_name');
-        $this->_address = $request->get('address');
-        $this->_phone = $request->get('phonenumber');    
 
         $price = $request->total_price;
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET')); 
@@ -59,15 +55,15 @@ class StripePaymentController extends Controller
         {     
              
             $feedback = array();
-            $feedback['amount'] = $this->_amount;
-            $feedback['name'] = $this->_name;
-            $feedback['address'] = $this->_address;
-            $feedback['phone'] = $this->_phone;
-            $feedback['mail'] = $this->_useremail;
+            $feedback['amount'] = $request->get('total_price');
+            $feedback['name'] = $request->get('user_name');
+            $feedback['address'] = $request->get('address');
+            $feedback['phone'] = $request->get('phonenumber');  
+            $feedback['mail'] = $request->get('user_email');
             $feedback['type'] = "Stripe";
             $feedback['role'] = "user";
             $feedback['unit'] = "$";
-            $toEmail = $this->_useremail;
+            $toEmail = $request->get('user_email');
             Mail::to($toEmail)->send(new FeedbackMail($feedback));
             
             $toEmail = env('ADMIN_MAIL');

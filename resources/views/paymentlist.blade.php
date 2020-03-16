@@ -199,7 +199,7 @@
                         
                         <form action="{!! URL::to('paypal') !!}" id="selectedform" method="post">
                         @csrf
-                            <input type="hidden" class="form-control" name="amount" value="{{ $total_price }}" >
+                            <input type="hidden" class="form-control" name="total_price" value="{{ $total_price }}" >
                                                       
                             <input type="hidden" name="user_email" class="user_email" value="">
                             <input type="hidden" name="user_name" class="user_name" value="">
