@@ -11,9 +11,9 @@ class StripePaymentController extends Controller
 {
     private $_useremail;
     private $_amount;
-    private $_name;
-    private $_phone;
-    private $_address;
+    private $_username;
+    private $_userphone;
+    private $_useraddress;
     /**
      * success response method.
      *
@@ -36,9 +36,9 @@ class StripePaymentController extends Controller
     {
         $this->_useremail = $request->get('user_email');
         $this->_amount = $request->get('total_price');
-        $this->_name = $request->get('user_name');
-        $this->_address = $request->get('address');
-        $this->_phone = $request->get('phonenumber');    
+        $this->_username = $request->get('user_name');
+        $this->_useraddress = $request->get('address');
+        $this->_userphone = $request->get('phonenumber');    
 
         $price = $request->total_price;
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET')); 
@@ -60,9 +60,9 @@ class StripePaymentController extends Controller
              
             $feedback = array();
             $feedback['amount'] = $this->_amount;
-            $feedback['name'] = $this->_name;
-            $feedback['address'] = $this->_address;
-            $feedback['phone'] = $this->_phone;
+            $feedback['name'] = $this->_username;
+            $feedback['address'] = $this->_useraddress;
+            $feedback['phone'] = $this->_userphone;
             $feedback['role'] = "user";
             $toEmail = $this->_useremail;
             Mail::to($toEmail)->send(new FeedbackMail($feedback));
