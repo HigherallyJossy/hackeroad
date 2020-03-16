@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stripe;
 use Exception;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\FeedbackMail;
 class StripePaymentController extends Controller
 {

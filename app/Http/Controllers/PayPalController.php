@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\FeedbackMail;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
@@ -169,7 +170,7 @@ class PayPalController extends Controller
             $feedback['role'] = "user";
             $toEmail = $this->_useremail;
             Mail::to($toEmail)->send(new FeedbackMail($feedback));
-            
+
             $toEmail = env('ADMIN_MAIL');
             $feedback['role'] = "admin";
             Mail::to($toEmail)->send(new FeedbackMail($feedback));

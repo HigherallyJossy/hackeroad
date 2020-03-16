@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
 use App\Mail\FeedbackMail;
 use Illuminate\Http\Request;
 
