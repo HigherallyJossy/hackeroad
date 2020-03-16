@@ -165,7 +165,7 @@
 				<div class="col-sm-4">
 					<form action="{{ route('paymentlist') }}" method="post">
 						@csrf
-						<input type="hidden" value="5" name="price">							
+						<input type="hidden" value="0.05" name="price">							
 						<button type="submit" class="pricing_item" data="0">
 						<img src="{{ asset('assets/imge/btn45.png') }}" style="width:200px;" alt="">													
 						</button>
