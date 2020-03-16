@@ -376,7 +376,10 @@
                     alert("Something is wrong your connection.");
                     location.reload();
                 }
-
+            if(price_inr < 1)
+            {
+                price_inr = Math.ceil(72*price_usd);
+            }
             $(".paytm_price").val(price_inr);
 
             function checkvalidation()
