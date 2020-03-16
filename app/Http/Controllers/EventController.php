@@ -10,7 +10,8 @@ use PaytmWallet;
  
 class EventController extends Controller
 {
- 
+    private $_useremail;
+    private $_amount;
  
     /**
      * Redirect the user to the Payment Gateway.
@@ -30,27 +31,25 @@ class EventController extends Controller
      */
     public function eventOrderGen(Request $request)
     {
-    //  $this->validate($request, [
-    //       'name' => 'required',
-    //       'mobile_no' =>'required|numeric|digits:10|unique:events,mobile_number',
-    //     ]);
- 
-        $input = $request->all();
-        $input['order_id'] = rand(1111,9999);
-        $input['amount'] = 1;
- 
-        // Event::insert($input);
- 
-        $payment = PaytmWallet::with('receive');
-        $payment->prepare([
-          'order' => $input['order_id'],
-          'user' => 'user id',
-          'mobile_number' => $request->mobile_number,
-          'email' => $request->email,
-          'amount' => $input['amount'],
-          'callback_url' => url('payment/status')
-        ]);
-        return $payment->receive();
+      $input = $request->all();
+      $input['order_id'] = rand(1111,9999);
+      $input['amount'] = $request->get('total_price');
+
+      // Event::insert($input);
+
+      $payment = PaytmWallet::with('receive');
+      $payment->prepare([
+        'order' => $input['order_id'],
+        'user' => 'user id',
+        'mobile_number' => $request->mobile_number,
+        'email' => $request->email,
+        'amount' => $input['amount'],
+        'callback_url' => url('payment/status')
+      ]);
+      $this->_useremail = $request->get('user_email');
+      $this->_amount = $request->get('total_price');
+      
+      return $payment->receive();
     }
  
     /**

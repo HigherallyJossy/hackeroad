@@ -331,7 +331,7 @@
                                     </div>                                                      
                                 </div>
 
-                                <input type="hidden" name="email" class="user_email" value="">
+                                <input type="hidden" name="user_email" class="user_email" value="">
                                 <input type="hidden" name="user_name" class="user_name" value="">
                                 <input type="hidden" name="phonenumber" class="user_phonenumber" value="">
                                 <input type="hidden" name="address" class="user_address" value="">
