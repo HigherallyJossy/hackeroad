@@ -26,7 +26,7 @@ Route::post('/cashpayment', 'CashController@cashpayment')->name('cashpayment');
 
 Route::get('event', 'EventController@bookEvent');
 Route::post('paytm_payment', 'EventController@eventOrderGen')->name('paytm_payment');
-Route::any('paytm_payment/status', 'EventController@paymentCallback');
+Route::any('payment/status', 'EventController@paymentCallback');
 
 
 
